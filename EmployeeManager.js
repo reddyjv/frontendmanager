@@ -91,7 +91,7 @@ function ManageEmployees() {
         <>
           <div className="modal-backdrop fade show"></div>
           <div className="modal show fade d-block" tabIndex="-1">
-            <div className="modal-dialog">
+            <div className="modal-dialog modal-dialog-centered">
               <div className="modal-content">
                 <div className="modal-header">
                   <h5 className="modal-title">Update Employee</h5>
@@ -100,22 +100,28 @@ function ManageEmployees() {
                 <div className="modal-body">
                   <div className="row">
                     <div className="col-md-6 mb-2">
-                      <input type="text" className="form-control" placeholder="Name" value={selectedEmployee.name} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, name: e.target.value })} required />
+                      <label className="form-label">Name</label>
+                      <input type="text" className="form-control" value={selectedEmployee.name} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, name: e.target.value })} required />
                     </div>
                     <div className="col-md-6 mb-2">
+                      <label className="form-label">Email</label>
                       <input type="email" className="form-control" value={selectedEmployee.email} disabled />
                     </div>
                     <div className="col-md-6 mb-2">
-                      <input type="text" className="form-control" placeholder="Phone" value={selectedEmployee.phone} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, phone: e.target.value })} required />
+                      <label className="form-label">Phone</label>
+                      <input type="text" className="form-control" value={selectedEmployee.phone} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, phone: e.target.value })} required />
                     </div>
                     <div className="col-md-6 mb-2">
-                      <input type="text" className="form-control" placeholder="Company" value={selectedEmployee.company} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, company: e.target.value })} required />
+                      <label className="form-label">Company</label>
+                      <input type="text" className="form-control" value={selectedEmployee.company} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, company: e.target.value })} required />
                     </div>
                     <div className="col-md-6 mb-2">
-                      <input type="number" className="form-control" placeholder="Age" value={selectedEmployee.age} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, age: e.target.value })} required />
+                      <label className="form-label">Age</label>
+                      <input type="number" className="form-control" value={selectedEmployee.age} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, age: e.target.value })} required />
                     </div>
                     <div className="col-md-6 mb-2">
-                      <input type="date" className="form-control" placeholder="DOB" value={selectedEmployee.dob} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, dob: e.target.value })} required />
+                      <label className="form-label">Date of Birth</label>
+                      <input type="date" className="form-control" value={selectedEmployee.dob} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, dob: e.target.value })} required />
                     </div>
                   </div>
                 </div>
