@@ -85,28 +85,6 @@ function Register() {
     }
   };
 
-  const renderInput = (label, name, type, icon, placeholder) => (
-    <div className="form-group mb-3">
-      <label>{label}</label>
-      <div className="input-group">
-        <span className="input-group-text">
-          <i className={`fas fa-${icon}`}></i>
-        </span>
-        <input
-          type={type}
-          name={name}
-          className="form-control"
-          placeholder={placeholder}
-          value={formData[name]}
-          onChange={handleChange}
-        />
-      </div>
-      {!formErrors[name] && formData[name] && (
-        <small className="text-danger">Invalid {label.toLowerCase()}</small>
-      )}
-    </div>
-  );
-
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
@@ -125,12 +103,111 @@ function Register() {
         >
           <h3 className="text-center mb-4">Register</h3>
 
-          {renderInput('Name', 'name', 'text', 'user', 'Enter name')}
-          {renderInput('Email ID', 'email', 'email', 'envelope', 'Enter email')}
-          {renderInput('Date of Birth', 'dob', 'date', 'calendar', '')}
-          {renderInput('Mobile Number', 'mobile', 'text', 'phone', '10-digit number')}
-          {renderInput('Age', 'age', 'text', 'hourglass-half', 'Enter age')}
+          {/* Name */}
+          <div className="form-group mb-3">
+            <label>Name</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <i className="fas fa-user"></i>
+              </span>
+              <input
+                type="text"
+                name="name"
+                className="form-control"
+                placeholder="Enter name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+            </div>
+            {!formErrors.name && formData.name && (
+              <small className="text-danger">Invalid name</small>
+            )}
+          </div>
 
+          {/* Email */}
+          <div className="form-group mb-3">
+            <label>Email ID</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <i className="fas fa-envelope"></i>
+              </span>
+              <input
+                type="email"
+                name="email"
+                className="form-control"
+                placeholder="Enter email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+            </div>
+            {!formErrors.email && formData.email && (
+              <small className="text-danger">Invalid email</small>
+            )}
+          </div>
+
+          {/* DOB */}
+          <div className="form-group mb-3">
+            <label>Date of Birth</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <i className="fas fa-calendar"></i>
+              </span>
+              <input
+                type="date"
+                name="dob"
+                className="form-control"
+                value={formData.dob}
+                onChange={handleChange}
+              />
+            </div>
+            {!formErrors.dob && formData.dob && (
+              <small className="text-danger">Please select date of birth</small>
+            )}
+          </div>
+
+          {/* Mobile */}
+          <div className="form-group mb-3">
+            <label>Mobile Number</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <i className="fas fa-phone"></i>
+              </span>
+              <input
+                type="text"
+                name="mobile"
+                className="form-control"
+                placeholder="10-digit number"
+                value={formData.mobile}
+                onChange={handleChange}
+              />
+            </div>
+            {!formErrors.mobile && formData.mobile && (
+              <small className="text-danger">Invalid mobile number</small>
+            )}
+          </div>
+
+          {/* Age */}
+          <div className="form-group mb-3">
+            <label>Age</label>
+            <div className="input-group">
+              <span className="input-group-text">
+                <i className="fas fa-hourglass-half"></i>
+              </span>
+              <input
+                type="text"
+                name="age"
+                className="form-control"
+                placeholder="Enter age"
+                value={formData.age}
+                onChange={handleChange}
+              />
+            </div>
+            {!formErrors.age && formData.age && (
+              <small className="text-danger">Invalid age</small>
+            )}
+          </div>
+
+          {/* Gender */}
           <div className="form-group mb-3">
             <label>Gender</label>
             <div className="input-group">
@@ -154,6 +231,7 @@ function Register() {
             )}
           </div>
 
+          {/* Role */}
           <div className="form-group mb-3">
             <label>Role</label>
             <div>
@@ -185,6 +263,7 @@ function Register() {
             )}
           </div>
 
+          {/* Password */}
           <div className="form-group mb-3">
             <label>Password</label>
             <div className="input-group">
@@ -217,7 +296,3 @@ function Register() {
 }
 
 export default Register;
-
-
-//npm install @fortawesome/fontawesome-free
-//<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
