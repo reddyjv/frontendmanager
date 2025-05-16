@@ -1,13 +1,32 @@
-const express = require("express");
-const router = express.Router();
-const {
-  getVendors,
-  updateVendor,
-  deleteVendor,
-} = require("../controllers/vendorController");
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!isFormValid) return;
 
-router.get("/", getVendors);
-router.put("/:id", updateVendor);
-router.delete("/:id", deleteVendor);
+  try {
+    const hashedPassword = await bcrypt.hash(formData.password, 10);
+    await axios.post('http://localhost:5000/api/users/register', {
+      ...formData,
+      password: hashedPassword
+    });
 
-module.exports = router;
+    alert('Registered successfully!');
+
+    // ✅ Reset form and errors
+    setFormData({
+      name: '',
+      email: '',
+      dob: '',
+      role: '',
+      gender: '',
+      age: '',
+      mobile: '',
+      password: ''
+    });
+
+    setFormErrors({});
+
+  } catch (err) {
+    alert('Error registering');
+    console.error(err);
+  }
+};
