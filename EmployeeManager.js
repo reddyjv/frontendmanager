@@ -49,7 +49,7 @@ function ManageEmployees() {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-4 position-relative">
       <h2 className="text-center mb-4">Manage Employees</h2>
 
       {alert.show && (
@@ -59,49 +59,74 @@ function ManageEmployees() {
       )}
 
       <div className="row">
-        {employees.map((employee) => (
-          <div key={employee._id} className="col-md-4 mb-3">
-            <div className="card shadow rounded">
-              <div className="card-header bg-primary text-white">
-                <h5 className="card-title mb-0">{employee.name}</h5>
-              </div>
-              <div className="card-body">
-                <p className="card-text"><strong>Email:</strong> {employee.email}</p>
-                <p className="card-text"><strong>Phone:</strong> {employee.phone}</p>
-                <p className="card-text"><strong>Company:</strong> {employee.company}</p>
-                <button className="btn btn-warning me-2" onClick={() => handleEdit(employee)}>
-                  Edit
-                </button>
-                <button className="btn btn-danger" onClick={() => handleDelete(employee._id)}>
-                  Delete
-                </button>
+        {employees.length === 0 ? (
+          <p className="text-center text-muted">No employees found.</p>
+        ) : (
+          employees.map((employee) => (
+            <div key={employee._id} className="col-md-4 mb-3">
+              <div className="card shadow rounded">
+                <div className="card-header bg-primary text-white">
+                  <h5 className="card-title mb-0">{employee.name}</h5>
+                </div>
+                <div className="card-body">
+                  <p className="card-text"><strong>Email:</strong> {employee.email}</p>
+                  <p className="card-text"><strong>Phone:</strong> {employee.phone}</p>
+                  <p className="card-text"><strong>Age:</strong> {employee.age}</p>
+                  <p className="card-text"><strong>Date of Birth:</strong> {employee.dob}</p>
+                  <p className="card-text"><strong>Company:</strong> {employee.company}</p>
+                  <button className="btn btn-warning me-2" onClick={() => handleEdit(employee)}>
+                    Edit
+                  </button>
+                  <button className="btn btn-danger" onClick={() => handleDelete(employee._id)}>
+                    Delete
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       {showModal && selectedEmployee && (
-        <div className="modal show fade d-block" tabIndex="-1">
-          <div className="modal-dialog">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h5 className="modal-title">Update Employee</h5>
-                <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
-              </div>
-              <div className="modal-body">
-                <input type="text" className="form-control mb-2" placeholder="Name" value={selectedEmployee.name} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, name: e.target.value })} required />
-                <input type="email" className="form-control mb-2" value={selectedEmployee.email} disabled />
-                <input type="text" className="form-control mb-2" placeholder="Phone" value={selectedEmployee.phone} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, phone: e.target.value })} required />
-                <input type="text" className="form-control mb-2" placeholder="Company" value={selectedEmployee.company} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, company: e.target.value })} required />
-              </div>
-              <div className="modal-footer">
-                <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
-                <button type="button" className="btn btn-primary" onClick={handleUpdate}>Update</button>
+        <>
+          <div className="modal-backdrop fade show"></div>
+          <div className="modal show fade d-block" tabIndex="-1">
+            <div className="modal-dialog">
+              <div className="modal-content">
+                <div className="modal-header">
+                  <h5 className="modal-title">Update Employee</h5>
+                  <button type="button" className="btn-close" onClick={() => setShowModal(false)}></button>
+                </div>
+                <div className="modal-body">
+                  <div className="row">
+                    <div className="col-md-6 mb-2">
+                      <input type="text" className="form-control" placeholder="Name" value={selectedEmployee.name} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, name: e.target.value })} required />
+                    </div>
+                    <div className="col-md-6 mb-2">
+                      <input type="email" className="form-control" value={selectedEmployee.email} disabled />
+                    </div>
+                    <div className="col-md-6 mb-2">
+                      <input type="text" className="form-control" placeholder="Phone" value={selectedEmployee.phone} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, phone: e.target.value })} required />
+                    </div>
+                    <div className="col-md-6 mb-2">
+                      <input type="text" className="form-control" placeholder="Company" value={selectedEmployee.company} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, company: e.target.value })} required />
+                    </div>
+                    <div className="col-md-6 mb-2">
+                      <input type="number" className="form-control" placeholder="Age" value={selectedEmployee.age} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, age: e.target.value })} required />
+                    </div>
+                    <div className="col-md-6 mb-2">
+                      <input type="date" className="form-control" placeholder="DOB" value={selectedEmployee.dob} onChange={(e) => setSelectedEmployee({ ...selectedEmployee, dob: e.target.value })} required />
+                    </div>
+                  </div>
+                </div>
+                <div className="modal-footer">
+                  <button type="button" className="btn btn-secondary" onClick={() => setShowModal(false)}>Cancel</button>
+                  <button type="button" className="btn btn-primary" onClick={handleUpdate}>Update</button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </>
       )}
     </div>
   );
