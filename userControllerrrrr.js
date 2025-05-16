@@ -1,31 +1,27 @@
+const express = require('express');
+const router = express.Router();
 const User = require('../models/User');
-const bcrypt = require('bcryptjs');
 
-// Function to generate next employee ID
+// Generate next employeeId like EMP1001, EMP1002...
 const generateEmployeeId = async () => {
     const lastUser = await User.findOne().sort({ createdAt: -1 });
     if (!lastUser || !lastUser.employeeId) {
         return 'EMP1001';
     }
     const lastId = parseInt(lastUser.employeeId.replace('EMP', ''));
-    const newId = lastId + 1;
-    return `EMP${newId}`;
+    return `EMP${lastId + 1}`;
 };
 
-const registerUser = async (req, res) => {
+router.post('/register', async (req, res) => {
     try {
         const { name, email, dob, gender, role, password, mobile, age } = req.body;
 
-        // Check for existing user
-        const existingUser = await User.findOne({ email });
-        if (existingUser) {
-            return res.status(400).json({ message: 'User already exists with this email' });
+        // Check if user exists
+        const userExists = await User.findOne({ email });
+        if (userExists) {
+            return res.status(400).json({ message: 'User already exists' });
         }
 
-        // Hash password
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // Generate Employee ID
         const employeeId = await generateEmployeeId();
 
         const newUser = new User({
@@ -35,18 +31,17 @@ const registerUser = async (req, res) => {
             dob,
             gender,
             role,
-            password: hashedPassword,
+            password, // Already hashed
             mobile,
             age
         });
 
         await newUser.save();
         res.status(201).json({ message: 'User registered successfully', employeeId });
-
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Server error' });
     }
-};
+});
 
-module.exports = { registerUser };
+module.exports = router;
