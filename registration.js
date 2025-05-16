@@ -1,8 +1,9 @@
-\import React, { useState } from 'react';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import bcrypt from 'bcryptjs';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Register.css'; // For icon styling
+import './Register.css'; // CSS for icons
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -77,7 +78,7 @@ function Register() {
         <form onSubmit={handleSubmit} noValidate>
 
           {/* Name */}
-          <div className="form-group mb-4 position-relative">
+          <div className="form-group mb-3 position-relative">
             <label className="fw-semibold">Name</label>
             <i className="fa fa-user icon-inside"></i>
             <input
@@ -88,11 +89,13 @@ function Register() {
               value={formData.name}
               onChange={handleChange}
             />
-            {formErrors.name && <div className="invalid-feedback">{formErrors.name}</div>}
+            <div className="error-space">
+              {formErrors.name && <div className="text-danger small">{formErrors.name}</div>}
+            </div>
           </div>
 
           {/* Email */}
-          <div className="form-group mb-4 position-relative">
+          <div className="form-group mb-3 position-relative">
             <label className="fw-semibold">Email</label>
             <i className="fa fa-envelope icon-inside"></i>
             <input
@@ -103,11 +106,13 @@ function Register() {
               value={formData.email}
               onChange={handleChange}
             />
-            {formErrors.email && <div className="invalid-feedback">{formErrors.email}</div>}
+            <div className="error-space">
+              {formErrors.email && <div className="text-danger small">{formErrors.email}</div>}
+            </div>
           </div>
 
-          {/* Date of Birth */}
-          <div className="form-group mb-4 position-relative">
+          {/* DOB */}
+          <div className="form-group mb-3 position-relative">
             <label className="fw-semibold">Date of Birth</label>
             <i className="fa fa-calendar icon-inside"></i>
             <input
@@ -117,11 +122,13 @@ function Register() {
               value={formData.dob}
               onChange={handleChange}
             />
-            {formErrors.dob && <div className="invalid-feedback">{formErrors.dob}</div>}
+            <div className="error-space">
+              {formErrors.dob && <div className="text-danger small">{formErrors.dob}</div>}
+            </div>
           </div>
 
           {/* Mobile */}
-          <div className="form-group mb-4 position-relative">
+          <div className="form-group mb-3 position-relative">
             <label className="fw-semibold">Mobile</label>
             <i className="fa fa-phone icon-inside"></i>
             <input
@@ -132,11 +139,13 @@ function Register() {
               value={formData.mobile}
               onChange={handleChange}
             />
-            {formErrors.mobile && <div className="invalid-feedback">{formErrors.mobile}</div>}
+            <div className="error-space">
+              {formErrors.mobile && <div className="text-danger small">{formErrors.mobile}</div>}
+            </div>
           </div>
 
           {/* Age */}
-          <div className="form-group mb-4 position-relative">
+          <div className="form-group mb-3 position-relative">
             <label className="fw-semibold">Age</label>
             <i className="fa fa-hourglass icon-inside"></i>
             <input
@@ -147,11 +156,13 @@ function Register() {
               value={formData.age}
               onChange={handleChange}
             />
-            {formErrors.age && <div className="invalid-feedback">{formErrors.age}</div>}
+            <div className="error-space">
+              {formErrors.age && <div className="text-danger small">{formErrors.age}</div>}
+            </div>
           </div>
 
           {/* Gender */}
-          <div className="form-group mb-4">
+          <div className="form-group mb-3">
             <label className="fw-semibold">Gender</label>
             <select
               name="gender"
@@ -164,11 +175,13 @@ function Register() {
               <option value="Female">Female</option>
               <option value="Other">Other</option>
             </select>
-            {formErrors.gender && <div className="invalid-feedback">{formErrors.gender}</div>}
+            <div className="error-space">
+              {formErrors.gender && <div className="text-danger small">{formErrors.gender}</div>}
+            </div>
           </div>
 
           {/* Role */}
-          <div className="form-group mb-4">
+          <div className="form-group mb-3">
             <label className="fw-semibold">Role</label><br />
             <div className="form-check form-check-inline">
               <input
@@ -192,11 +205,13 @@ function Register() {
               />
               <label className="form-check-label">Manager</label>
             </div>
-            {formErrors.role && <div className="text-danger mt-1">{formErrors.role}</div>}
+            <div className="error-space">
+              {formErrors.role && <div className="text-danger small">{formErrors.role}</div>}
+            </div>
           </div>
 
           {/* Password */}
-          <div className="form-group mb-4 position-relative">
+          <div className="form-group mb-3 position-relative">
             <label className="fw-semibold">Password</label>
             <i className="fa fa-lock icon-inside"></i>
             <input
@@ -207,12 +222,22 @@ function Register() {
               value={formData.password}
               onChange={handleChange}
             />
-            {formErrors.password && <div className="invalid-feedback">{formErrors.password}</div>}
+            <div className="error-space">
+              {formErrors.password && <div className="text-danger small">{formErrors.password}</div>}
+            </div>
           </div>
 
-          <button type="submit" className="btn btn-primary w-100" disabled={!isFormValid}>
+          {/* Submit */}
+          <button type="submit" className="btn btn-primary w-100 mt-2" disabled={!isFormValid}>
             Register
           </button>
+
+          {/* Already registered */}
+          <div className="text-center mt-3">
+            <Link to="/login" className="text-decoration-underline text-primary">
+              Already registered? Login here
+            </Link>
+          </div>
         </form>
       </div>
     </div>
