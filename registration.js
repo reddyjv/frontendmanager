@@ -118,192 +118,214 @@ function Register() {
   };
 
   return (
-    <div className="container p-4">
-      <h3 className="mb-4">Register</h3>
-      <form onSubmit={handleSubmit} noValidate>
-
-        {/* Name */}
-        <div className="mb-3">
-          <label className="form-label">Name</label>
-          <div className="input-group">
-            <span className="input-group-text">
-              <i className="fas fa-user"></i>
-            </span>
-            <input
-              type="text"
-              name="name"
-              className={`form-control ${formErrors.name ? 'is-invalid' : ''}`}
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Enter your name"
-            />
-          </div>
-          {formErrors.name && <div className="invalid-feedback d-block">{formErrors.name}</div>}
-        </div>
-
-        {/* Email */}
-        <div className="mb-3">
-          <label className="form-label">Email ID</label>
-          <div className="input-group">
-            <span className="input-group-text">
-              <i className="fas fa-envelope"></i>
-            </span>
-            <input
-              type="email"
-              name="email"
-              className={`form-control ${formErrors.email ? 'is-invalid' : ''}`}
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Enter your email"
-            />
-          </div>
-          {formErrors.email && <div className="invalid-feedback d-block">{formErrors.email}</div>}
-        </div>
-
-        {/* Date of Birth */}
-        <div className="mb-3">
-          <label className="form-label">Date of Birth</label>
-          <div className="input-group">
-            <span className="input-group-text">
-              <i className="fas fa-calendar-alt"></i>
-            </span>
-            <input
-              type="date"
-              name="dob"
-              className={`form-control ${formErrors.dob ? 'is-invalid' : ''}`}
-              value={formData.dob}
-              onChange={handleChange}
-            />
-          </div>
-          {formErrors.dob && <div className="invalid-feedback d-block">{formErrors.dob}</div>}
-        </div>
-
-        {/* Mobile */}
-        <div className="mb-3">
-          <label className="form-label">Mobile Number</label>
-          <div className="input-group">
-            <span className="input-group-text">
-              <i className="fas fa-phone"></i>
-            </span>
-            <input
-              type="text"
-              name="mobile"
-              className={`form-control ${formErrors.mobile ? 'is-invalid' : ''}`}
-              value={formData.mobile}
-              onChange={handleChange}
-              placeholder="10-digit number"
-            />
-          </div>
-          {formErrors.mobile && <div className="invalid-feedback d-block">{formErrors.mobile}</div>}
-        </div>
-
-        {/* Age */}
-        <div className="mb-3">
-          <label className="form-label">Age</label>
-          <div className="input-group">
-            <span className="input-group-text">
-              <i className="fas fa-hourglass-half"></i>
-            </span>
-            <input
-              type="text"
-              name="age"
-              className={`form-control ${formErrors.age ? 'is-invalid' : ''}`}
-              value={formData.age}
-              onChange={handleChange}
-              placeholder="Enter your age"
-            />
-          </div>
-          {formErrors.age && <div className="invalid-feedback d-block">{formErrors.age}</div>}
-        </div>
-
-        {/* Gender */}
-        <div className="mb-3">
-          <label className="form-label">Gender</label>
-          <div className="input-group">
-            <span className="input-group-text">
-              <i className="fas fa-venus-mars"></i>
-            </span>
-            <select
-              name="gender"
-              className={`form-select ${formErrors.gender ? 'is-invalid' : ''}`}
-              value={formData.gender}
-              onChange={handleChange}
-            >
-              <option value="">Select Gender</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
-              <option value="Other">Other</option>
-            </select>
-          </div>
-          {formErrors.gender && <div className="invalid-feedback d-block">{formErrors.gender}</div>}
-        </div>
-
-        {/* Role */}
-        <div className="mb-3">
-          <label className="form-label">Role</label>
-          <div>
-            <div className="form-check form-check-inline">
+    <div className="min-vh-100 d-flex align-items-center justify-content-center bg-light">
+      <div className="card shadow-sm p-4 p-md-5 w-100" style={{ maxWidth: '480px', borderRadius: '15px' }}>
+        <h2 className="text-center mb-4 fw-bold text-primary">Register</h2>
+        <form onSubmit={handleSubmit} noValidate>
+          {/* Name */}
+          <div className="mb-4">
+            <label htmlFor="name" className="form-label fw-semibold">
+              Name
+            </label>
+            <div className="input-group has-validation shadow-sm">
+              <span className="input-group-text bg-primary text-white">
+                <i className="fas fa-user"></i>
+              </span>
               <input
-                type="radio"
-                className={`form-check-input ${formErrors.role ? 'is-invalid' : ''}`}
-                name="role"
-                value="vendor"
-                checked={formData.role === 'vendor'}
+                id="name"
+                type="text"
+                name="name"
+                className={`form-control ${formErrors.name ? 'is-invalid' : 'border-0'}`}
+                value={formData.name}
                 onChange={handleChange}
-                id="roleVendor"
+                placeholder="Enter your full name"
               />
-              <label className="form-check-label" htmlFor="roleVendor">
-                Vendor
-              </label>
-            </div>
-            <div className="form-check form-check-inline">
-              <input
-                type="radio"
-                className={`form-check-input ${formErrors.role ? 'is-invalid' : ''}`}
-                name="role"
-                value="manager"
-                checked={formData.role === 'manager'}
-                onChange={handleChange}
-                id="roleManager"
-              />
-              <label className="form-check-label" htmlFor="roleManager">
-                Manager
-              </label>
+              <div className="invalid-feedback">{formErrors.name}</div>
             </div>
           </div>
-          {formErrors.role && <div className="text-danger mt-1">{formErrors.role}</div>}
-        </div>
 
-        {/* Password */}
-        <div className="mb-3">
-          <label className="form-label">Password</label>
-      <div className="input-group">
-        <span className="input-group-text">
-          <i className="fas fa-lock"></i>
-        </span>
-        <input
-          type="password"
-          name="password"
-          className={`form-control ${formErrors.password ? 'is-invalid' : ''}`}
-          value={formData.password}
-          onChange={handleChange}
-          placeholder="Enter your password"
-        />
+          {/* Email */}
+          <div className="mb-4">
+            <label htmlFor="email" className="form-label fw-semibold">
+              Email ID
+            </label>
+            <div className="input-group has-validation shadow-sm">
+              <span className="input-group-text bg-primary text-white">
+                <i className="fas fa-envelope"></i>
+              </span>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                className={`form-control ${formErrors.email ? 'is-invalid' : 'border-0'}`}
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Enter your email address"
+              />
+              <div className="invalid-feedback">{formErrors.email}</div>
+            </div>
+          </div>
+
+          {/* Date of Birth */}
+          <div className="mb-4">
+            <label htmlFor="dob" className="form-label fw-semibold">
+              Date of Birth
+            </label>
+            <div className="input-group has-validation shadow-sm">
+              <span className="input-group-text bg-primary text-white">
+                <i className="fas fa-calendar-alt"></i>
+              </span>
+              <input
+                id="dob"
+                type="date"
+                name="dob"
+                className={`form-control ${formErrors.dob ? 'is-invalid' : 'border-0'}`}
+                value={formData.dob}
+                onChange={handleChange}
+              />
+              <div className="invalid-feedback">{formErrors.dob}</div>
+            </div>
+          </div>
+
+          {/* Mobile Number */}
+          <div className="mb-4">
+            <label htmlFor="mobile" className="form-label fw-semibold">
+              Mobile Number
+            </label>
+            <div className="input-group has-validation shadow-sm">
+              <span className="input-group-text bg-primary text-white">
+                <i className="fas fa-phone"></i>
+              </span>
+              <input
+                id="mobile"
+                type="text"
+                name="mobile"
+                className={`form-control ${formErrors.mobile ? 'is-invalid' : 'border-0'}`}
+                value={formData.mobile}
+                onChange={handleChange}
+                placeholder="10-digit mobile number"
+              />
+              <div className="invalid-feedback">{formErrors.mobile}</div>
+            </div>
+          </div>
+
+          {/* Age */}
+          <div className="mb-4">
+            <label htmlFor="age" className="form-label fw-semibold">
+              Age
+            </label>
+            <div className="input-group has-validation shadow-sm">
+              <span className="input-group-text bg-primary text-white">
+                <i className="fas fa-hourglass-half"></i>
+              </span>
+              <input
+                id="age"
+                type="number"
+                name="age"
+                className={`form-control ${formErrors.age ? 'is-invalid' : 'border-0'}`}
+                value={formData.age}
+                onChange={handleChange}
+                placeholder="Enter your age"
+                min="1"
+              />
+              <div className="invalid-feedback">{formErrors.age}</div>
+            </div>
+          </div>
+
+          {/* Gender */}
+          <div className="mb-4">
+            <label htmlFor="gender" className="form-label fw-semibold">
+              Gender
+            </label>
+            <div className="input-group shadow-sm">
+              <span className="input-group-text bg-primary text-white">
+                <i className="fas fa-venus-mars"></i>
+              </span>
+              <select
+                id="gender"
+                name="gender"
+                className={`form-select ${formErrors.gender ? 'is-invalid' : ''}`}
+                value={formData.gender}
+                onChange={handleChange}
+              >
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <div className="invalid-feedback">{formErrors.gender}</div>
+            </div>
+          </div>
+
+          {/* Role */}
+          <div className="mb-4">
+            <label className="form-label fw-semibold d-block">Role</label>
+            <div className="d-flex gap-4 shadow-sm p-3 rounded border">
+              <div className="form-check">
+                <input
+                  type="radio"
+                  className={`form-check-input ${formErrors.role ? 'is-invalid' : ''}`}
+                  name="role"
+                  value="vendor"
+                  checked={formData.role === 'vendor'}
+                  onChange={handleChange}
+                  id="roleVendor"
+                />
+                <label className="form-check-label" htmlFor="roleVendor">
+                  Vendor
+                </label>
+              </div>
+              <div className="form-check">
+                <input
+                  type="radio"
+                  className={`form-check-input ${formErrors.role ? 'is-invalid' : ''}`}
+                  name="role"
+                  value="manager"
+                  checked={formData.role === 'manager'}
+                  onChange={handleChange}
+                  id="roleManager"
+                />
+                <label className="form-check-label" htmlFor="roleManager">
+                  Manager
+                </label>
+              </div>
+            </div>
+            {formErrors.role && <div className="text-danger mt-2 fw-semibold">{formErrors.role}</div>}
+          </div>
+
+          {/* Password */}
+          <div className="mb-4">
+            <label htmlFor="password" className="form-label fw-semibold">
+              Password
+            </label>
+            <div className="input-group has-validation shadow-sm">
+              <span className="input-group-text bg-primary text-white">
+                <i className="fas fa-lock"></i>
+              </span>
+              <input
+                id="password"
+                type="password"
+                name="password"
+                className={`form-control ${formErrors.password ? 'is-invalid' : 'border-0'}`}
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="At least 6 chars & special char"
+              />
+              <div className="invalid-feedback">{formErrors.password}</div>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="btn btn-primary w-100 fw-semibold shadow"
+            disabled={!isFormValid}
+          >
+            Register
+          </button>
+        </form>
       </div>
-      {formErrors.password && <div className="invalid-feedback d-block">{formErrors.password}</div>}
     </div>
-
-    <button type="submit" className="btn btn-primary" disabled={!isFormValid}>
-      Register
-    </button>
-  </form>
-</div>
-);
+  );
 }
 
 export default Register;
-
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-/>
